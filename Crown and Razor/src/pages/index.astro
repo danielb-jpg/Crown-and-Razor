@@ -1,0 +1,231 @@
+---
+import '../styles/global.css';
+
+// Swap in the shop's real WhatsApp number (country code, no + or spaces)
+const WHATSAPP = '2348000000000';
+
+const services = [
+  { name: 'Signature Cut', desc: 'Consultation, precision cut, finish and styling.', price: '₦6,000', dur: '45 min' },
+  { name: 'Beard Sculpt', desc: 'Shaped, lined and conditioned with warm oil.', price: '₦4,000', dur: '30 min' },
+  { name: 'Hot Towel Shave', desc: 'Straight razor, steamed towels, calm finish.', price: '₦5,000', dur: '35 min' },
+  { name: 'Cut + Beard', desc: 'Our two most-booked services, back to back.', price: '₦9,000', dur: '70 min' },
+  { name: 'Line-up', desc: 'Crisp edges and a clean hairline between cuts.', price: '₦2,500', dur: '15 min' },
+  { name: 'Young Gentleman', desc: 'Patient, sharp cuts for boys under 12.', price: '₦3,500', dur: '30 min' },
+  { name: 'Colour & Cover', desc: 'Grey blending or a bold colour, done cleanly.', price: '₦7,000', dur: '60 min' },
+  { name: 'The Royal', desc: 'Cut, beard, hot towel and facial. The full ritual.', price: '₦15,000', dur: '2 hrs', featured: true },
+];
+const barbers = [
+  { name: 'Tunde', role: 'Master barber', note: 'Skin fades and sharp tapers. Twelve years behind the chair.' },
+  { name: 'Emeka', role: 'Beard specialist', note: 'Sculpted beards and hot towel shaves, nothing rushed.' },
+  { name: 'Segun', role: 'Classic cuts', note: 'Scissor work, side parts and old-school gentleman’s trims.' },
+];
+const gallery = ['Skin fade', 'Beard sculpt', 'Classic taper', 'Hot towel', 'Line-up', 'Low fade', 'Texture crop', 'Clean shave'];
+---
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Crown &amp; Razor — Barber Lounge</title>
+  <meta name="description" content="Sharp cuts, sculpted beards and hot towel shaves. Book your chair online." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a href="#top" class="brand">Crown <span>&amp;</span> Razor</a>
+    <ul>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#barbers">Barbers</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#visit">Visit</a></li>
+    </ul>
+    <a href="#book" class="btn">Book a chair</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">Barber lounge · Lagos</p>
+        <h1>Sharp lines.<br /><em>Quiet confidence.</em></h1>
+        <p>Precision cuts, sculpted beards and hot towel shaves in a lounge made for men who notice the details.</p>
+        <div class="cta">
+          <a href="#book" class="btn">Book a chair</a>
+          <a href="#services" class="btn ghost">See services</a>
+        </div>
+        <div class="stats">
+          <div><b>12+</b><small>years of craft</small></div>
+          <div><b>5,000+</b><small>fresh cuts</small></div>
+          <div><b>4.9</b><small>client rating</small></div>
+        </div>
+      </div>
+      <svg class="crest" viewBox="0 0 300 300" role="img" aria-label="Crown and Razor crest">
+        <defs>
+          <linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E8CB7C"/><stop offset="1" stop-color="#A9822F"/></linearGradient>
+        </defs>
+        <circle cx="150" cy="150" r="138" fill="#0f0e0c" stroke="url(#g)" stroke-width="3"/>
+        <circle cx="150" cy="150" r="118" fill="none" stroke="url(#g)" stroke-width="1" stroke-dasharray="3 7"/>
+        <path d="M92 128l22 22 36-46 36 46 22-22-10 50H102z" fill="url(#g)"/>
+        <rect x="102" y="184" width="96" height="8" fill="url(#g)"/>
+        <path d="M112 226l76-24M112 202l76 24" stroke="url(#g)" stroke-width="5" stroke-linecap="round"/>
+        <circle cx="106" cy="230" r="9" fill="none" stroke="url(#g)" stroke-width="4"/>
+        <circle cx="194" cy="230" r="9" fill="none" stroke="url(#g)" stroke-width="4"/>
+      </svg>
+    </div>
+  </section>
+  <div class="pole"></div>
+
+  <section id="services">
+    <div class="wrap">
+      <p class="eyebrow reveal">The menu</p>
+      <h2 class="reveal">Services &amp; prices</h2>
+      <p class="lede reveal">Every service starts with a proper consultation. No rush, no guesswork.</p>
+      <div class="grid4">
+        {services.map((s) => (
+          <article class={`card reveal ${s.featured ? 'featured' : ''}`}>
+            {s.featured && <span class="tag">Signature</span>}
+            <svg class="ico" viewBox="0 0 48 48"><circle cx="14" cy="34" r="6"/><circle cx="34" cy="34" r="6"/><path d="M18 30L36 8M30 30L12 8"/></svg>
+            <h3>{s.name}</h3>
+            <p>{s.desc}</p>
+            <div class="price">{s.price}</div>
+            <div class="dur">{s.dur}</div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="barbers" class="barbers">
+    <div class="wrap">
+      <p class="eyebrow reveal">The chairs</p>
+      <h2 class="reveal">Meet the barbers</h2>
+      <div class="bgrid">
+        {barbers.map((b) => (
+          <div class="b reveal">
+            <div class="portrait">
+              <svg viewBox="0 0 300 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <circle cx="150" cy="150" r="62" fill="#C9A24B" opacity=".9"/>
+                <path d="M40 400c0-90 50-130 110-130s110 40 110 130z" fill="#C9A24B" opacity=".55"/>
+                <path d="M92 128c8-52 108-52 116 0-30-22-86-22-116 0z" fill="#0f0e0c"/>
+              </svg>
+            </div>
+            <h3>{b.name}</h3>
+            <p><b style="color:var(--gold-2)">{b.role}</b><br />{b.note}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery">
+    <div class="wrap">
+      <p class="eyebrow reveal">The work</p>
+      <h2 class="reveal">Fresh off the chair</h2>
+      <div class="gallery">
+        {gallery.map((g, i) => (
+          <div class="tile reveal">
+            <svg viewBox="0 0 200 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+              <rect width="200" height="200" fill={['#1b1610', '#241c12', '#17130e', '#2a2013'][i % 4]}/>
+              <circle cx="100" cy="86" r="34" fill="#C9A24B" opacity={0.35 + (i % 3) * 0.12}/>
+              <path d="M30 200c0-52 30-72 70-72s70 20 70 72z" fill="#C9A24B" opacity=".25"/>
+            </svg>
+            <span>{g}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="book" class="book">
+    <div class="wrap">
+      <div class="reveal">
+        <p class="eyebrow">Reserve</p>
+        <h2>Book your chair</h2>
+        <p class="lede">Pick a service, a barber and a time. Your request goes straight to us on WhatsApp and we’ll confirm within minutes.</p>
+      </div>
+      <form id="bookForm" class="reveal" data-wa={WHATSAPP}>
+        <div class="full"><label for="name">Your name</label><input id="name" required placeholder="Full name" /></div>
+        <div class="full"><label for="phone">Phone</label><input id="phone" type="tel" required placeholder="080…" /></div>
+        <div class="full">
+          <label for="service">Service</label>
+          <select id="service" required>
+            {services.map((s) => <option value={`${s.name} (${s.price})`}>{s.name} — {s.price}</option>)}
+          </select>
+        </div>
+        <div class="full">
+          <label for="barber">Barber</label>
+          <select id="barber">
+            <option>Any available barber</option>
+            {barbers.map((b) => <option>{b.name}</option>)}
+          </select>
+        </div>
+        <div><label for="date">Date</label><input id="date" type="date" required /></div>
+        <div><label for="time">Time</label><input id="time" type="time" required /></div>
+        <div class="full"><button class="btn" type="submit">Send booking on WhatsApp</button></div>
+      </form>
+    </div>
+  </section>
+
+  <section id="visit" style="padding-top:0">
+    <div class="wrap">
+      <p class="eyebrow reveal">Find us</p>
+      <h2 class="reveal">Visit the lounge</h2>
+      <div class="visit-grid">
+        <div class="reveal">
+          <div class="row"><span>Address</span><b>21 Marina Close, Lagos</b></div>
+          <div class="row"><span>Mon – Fri</span><b>9am – 8pm</b></div>
+          <div class="row"><span>Saturday</span><b>8am – 9pm</b></div>
+          <div class="row"><span>Sunday</span><b>12pm – 6pm</b></div>
+          <div class="row"><span>Phone</span><b>+234 800 000 0000</b></div>
+        </div>
+        <div class="map reveal">Map embed goes here.<br />Replace with the shop’s Google Maps iframe.</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© {new Date().getFullYear()} Crown &amp; Razor Barber Lounge.</span>
+    <span>Walk-ins welcome, bookings preferred.</span>
+  </div>
+</footer>
+
+<a class="concierge" href={`https://wa.me/${WHATSAPP}?text=${encodeURIComponent('Hi Crown & Razor, I’d like to book a chair.')}`} target="_blank" rel="noopener" aria-label="Chat with the concierge on WhatsApp">
+  <i></i><span>Concierge</span>
+</a>
+
+<script>
+  // fade-in on scroll
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+
+  // no past dates
+  const date = document.getElementById('date') as HTMLInputElement;
+  date.min = new Date().toISOString().split('T')[0];
+
+  // booking -> WhatsApp
+  const form = document.getElementById('bookForm') as HTMLFormElement;
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const v = (id: string) => (document.getElementById(id) as HTMLInputElement).value.trim();
+    const msg = [
+      'New booking request',
+      `Name: ${v('name')}`,
+      `Phone: ${v('phone')}`,
+      `Service: ${v('service')}`,
+      `Barber: ${v('barber')}`,
+      `Date: ${v('date')}`,
+      `Time: ${v('time')}`,
+    ].join('\n');
+    window.open(`https://wa.me/${form.dataset.wa}?text=${encodeURIComponent(msg)}`, '_blank');
+  });
+</script>
+</body>
+</html>
